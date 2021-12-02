@@ -1,0 +1,19 @@
+{
+  "name": "rtp-sfpc-f21-p5",
+  "scripts": {
+    "start": "http-server . -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://eaviles@github.com/eaviles/rtp-sfpc-f21-p5.git"
+  },
+  "author": "Edgardo Avilés-López <eaviles@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eaviles/rtp-sfpc-f21-p5/issues"
+  },
+  "homepage": "https://github.com/eaviles/rtp-sfpc-f21-p5#readme",
+  "dependencies": {
+    "http-server": "^14.0.0"
+  }
+}
