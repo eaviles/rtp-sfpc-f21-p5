@@ -6,13 +6,14 @@ const images = [];
 
 function preload() {
   for (let i = 0; i < NUM_OF_IMAGES; i += 1) {
-    const fileName = `images/polar-bear-${i}.jpg`;
+    const fileName = `images/polar-bear-${i + 1}.jpg`;
     images.push(loadImage(fileName));
   }
 }
 
 function setup() {
   createCanvas(WIDTH, HEIGHT);
+  noLoop();
 }
 
 function draw() {
@@ -37,5 +38,4 @@ function draw() {
   }
   average.updatePixels();
   image(average, 0, 0);
-  noLoop();
 }
