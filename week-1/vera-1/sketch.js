@@ -1,8 +1,8 @@
 function setup() {
   createCanvas(800, 800);
   randomSeed(0);
+  noiseSeed(0);
   noLoop();
-  angleMode(DEGREES);
 }
 
 function draw() {
@@ -12,8 +12,8 @@ function draw() {
       const y = map(j, 0, 39, 50, 750);
       push();
       translate(x, y);
-      rotate(random(0, 360));
-      if (noise(i * 0.1, j * 0.1) < 0.7) {
+      rotate(random(0, TAU));
+      if (noise(i * 0.1, j * 0.1) < 0.6) {
         line(-15, 0, 15, 0);
       }
       pop();
