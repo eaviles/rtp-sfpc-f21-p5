@@ -37,5 +37,9 @@ function draw() {
   noFill();
   stroke(255, 0, 0);
   line(x, y, x + 200, y);
+  stroke(0, 255, 0);
+  const box = font.textBounds(str, x, y);
+  rect(box.x, box.y, box.w, box.h);
+  stroke(255, 255, 0);
   rect(...getStringBoundingBox(str, x, y));
 }
