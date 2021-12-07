@@ -16,21 +16,21 @@ function setup() {
 function draw() {
   background(60);
 
-  const paths = font.textToPoints("hello", 100, 240, 200, {
+  const points = font.textToPoints("hello", 100, 240, 200, {
     sampleFactor: map(mouseX, 0, width, 0.001, 0.1)
   });
 
   beginShape();
-  paths.forEach(({ x, y }) => curveVertex(x, y));
+  points.forEach(({ x, y }) => curveVertex(x, y));
   endShape();
 
   translate(0, 200);
   beginShape();
-  paths.forEach(({ x, y }) => vertex(x, y));
+  points.forEach(({ x, y }) => vertex(x, y));
   endShape();
 
   translate(0, 200);
   beginShape(POINTS);
-  paths.forEach(({ x, y }) => vertex(x, y));
+  points.forEach(({ x, y }) => vertex(x, y));
   endShape();
 }
