@@ -6,7 +6,7 @@ const images = [];
 
 function preload() {
   for (let i = 0; i < NUM_OF_IMAGES; i += 1) {
-    const fileName = `../image-average/images/polar-bear-${i + 1}.jpg`;
+    const fileName = `/assets/images/polar-bear-${i + 1}.jpg`;
     images.push(loadImage(fileName));
   }
 }
