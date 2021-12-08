@@ -3,7 +3,7 @@ let tmpImg;
 let w, h;
 
 function preload() {
-  srcImg = loadImage("/assets/images/lillian.png");
+  srcImg = loadImage("/assets/images/lillian.jpg");
 }
 
 function resetImg() {
