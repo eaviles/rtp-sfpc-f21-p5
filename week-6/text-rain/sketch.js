@@ -35,7 +35,7 @@ function draw() {
 
   background(0);
   image(capture, 0, 0, WIDTH * 2, HEIGHT * 2);
-  image(thrsImg, 0, HEIGHT * 1.5, WIDTH * 0.5, HEIGHT * 0.5);
+  image(thrsImg, 0, HEIGHT * 1.5, WIDTH / 2, HEIGHT / 2);
 
   thrsImg.loadPixels();
   for (let i = 0; i < pts.length; i += 1) {

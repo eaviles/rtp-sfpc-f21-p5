@@ -7,10 +7,15 @@ const SMOOTH = 0.8;
 
 function predict() {
   if (model) {
-    model.estimateFaces(capture.elt).then(loadedPredictions => {
-      predictions = loadedPredictions;
-      setTimeout(predict, 0);
-    });
+    model
+      .estimateFaces(capture.elt)
+      .then(loadedPredictions => {
+        predictions = loadedPredictions;
+        setTimeout(predict, 0);
+      })
+      .catch(() => {
+        setTimeout(predict, 0);
+      });
   } else {
     setTimeout(predict, 1000);
   }

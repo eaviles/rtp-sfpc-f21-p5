@@ -20,6 +20,7 @@ function setup() {
 }
 
 function mousePressed() {
+  if (playing) return;
   playing = true;
   video.loop();
 }
