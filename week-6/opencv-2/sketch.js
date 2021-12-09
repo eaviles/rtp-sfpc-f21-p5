@@ -8,6 +8,7 @@ let grayImg;
 let srcImg;
 let thrhImg;
 let recordBg = true;
+let pixelsOnSmth = 0;
 
 function setup() {
   createCanvas(WIDTH * 3, HEIGHT * 2);
@@ -41,8 +42,6 @@ function keyPressed() {
 }
 
 function draw() {
-  background(0);
-
   srcImg = captureToMat(capture);
   cv.cvtColor(srcImg, grayImg, cv.COLOR_RGBA2GRAY);
   if (recordBg) {
@@ -53,15 +52,14 @@ function draw() {
   const thrh = map(mouseX, 0, width, 0, 255);
   cv.threshold(diffImg, thrhImg, thrh, 255, cv.THRESH_BINARY);
 
-  const contours = new cv.MatVector();
-  const hierarchy = new cv.Mat();
-  cv.findContours(
-    thrhImg,
-    contours,
-    hierarchy,
-    cv.RETR_EXTERNAL,
-    cv.CHAIN_APPROX_NONE
-  );
+  let pixelsOn = 0;
+  for (let i = 0; i < thrhImg.data.length; i += 1) {
+    if (thrhImg.data[i] > 127) pixelsOn += 1;
+  }
+
+  pixelsOnSmth = int(0.9 * pixelsOnSmth + 0.1 * pixelsOn);
+  const bgColor = int(map(pixelsOnSmth, 0, 20000, 0, 255, true));
+  background(bgColor);
 
   drawMat(srcImg, 0, 0);
   drawMat(grayImg, WIDTH, 0);
@@ -69,20 +67,7 @@ function draw() {
   drawMat(diffImg, WIDTH, HEIGHT);
   drawMat(thrhImg, WIDTH * 2, 0);
 
-  const offX = WIDTH * 2;
-  const offY = HEIGHT;
-  for (let i = 0; i < contours.size(); i += 1) {
-    fill(255, 0, 0, 128);
-    let contour = contours.get(i);
-    beginShape();
-    for (let j = 0; j < contour.total(); j += 1) {
-      const [x, y] = contour.intPtr(j);
-      vertex(x + offX, y + offY);
-    }
-    endShape(CLOSE);
-    noFill();
-    stroke(255, 255, 255);
-    let box = cv.boundingRect(contour);
-    rect(box.x + offX, box.y + offY, box.width, box.height);
-  }
+  fill(bgColor <= 127 ? 255 : 0);
+  const debugStr = JSON.stringify({ pixelsOn, pixelsOnSmth, bgColor }, null, 2);
+  text(debugStr, WIDTH * 2 + 20, HEIGHT + 30);
 }
