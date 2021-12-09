@@ -54,13 +54,7 @@ function setup() {
   }
 
   // Sort the images by brightness.
-  tmpImgs.sort((img1, img2) => {
-    const a = img1.brightness;
-    const b = img2.brightness;
-    if (a < b) return 1;
-    if (a > b) return -1;
-    return 0;
-  });
+  tmpImgs.sort((a, b) => b.brightness - a.brightness);
 
   // Draw a strip with all the images.
   const dw = int(WIDTH / NUM_OF_IMAGES);

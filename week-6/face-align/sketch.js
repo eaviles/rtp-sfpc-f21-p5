@@ -22,6 +22,7 @@ function setup() {
   capture = createCapture(VIDEO, () => {
     predict();
   });
+  capture.size(640, 480);
   capture.hide();
   blazeface.load().then(loadedModel => {
     model = loadedModel;
