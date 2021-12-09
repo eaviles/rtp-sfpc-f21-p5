@@ -72,7 +72,7 @@ function draw() {
   const offX = WIDTH * 2;
   const offY = HEIGHT;
   for (let i = 0; i < contours.size(); i += 1) {
-    fill(255, 0, 0, 128);
+    fill(255, 0, 0, 60);
     let contour = contours.get(i);
     beginShape();
     for (let j = 0; j < contour.total(); j += 1) {
@@ -81,7 +81,7 @@ function draw() {
     }
     endShape(CLOSE);
     noFill();
-    stroke(255, 255, 255);
+    stroke(255);
     let box = cv.boundingRect(contour);
     rect(box.x + offX, box.y + offY, box.width, box.height);
   }
